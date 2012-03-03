@@ -52,10 +52,6 @@
    make counting case insensitve."
   (cl-ppcre:split "\\W" (nstring-downcase line)))
 
-;; (defun remove-punctuation (string)
-;;   "Replace punctuation with spaces in string."
-;;   (substitute-if #\  #'punctuation-p string))
-
 (defun punctuation-p (char)
   (if (or (char-equal #\. char) (char-equal #\, char) 
           (char-equal #\- char) (char-equal #\_ char)
