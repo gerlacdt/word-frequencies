@@ -28,9 +28,10 @@
 (defun add-words-in-table (word-list)
   "add a constituent word in the global hashtable"
   (dolist (word word-list)
-    (cond ((null (gethash word *word-pair-table*)) 
-           (setf (gethash word *word-pair-table*) 1))
-          (t (incf (gethash word *word-pair-table*))))))
+    (if (> (length word) 0)
+        (cond ((null (gethash word *word-pair-table*)) 
+               (setf (gethash word *word-pair-table*) 1))
+              (t (incf (gethash word *word-pair-table*)))))))
 
 (defun gen-sorted-word-pair-list (hashtable)
   "generates from a hashtable<key=word, val=count> a sorted list descending 
@@ -49,11 +50,11 @@
 (defun split-line (line)
   "Split line into constiutent words. Remove punctuation from words and
    make counting case insensitve."
-  (cl-ppcre:split "\\s+" (remove-punctuation (nstring-downcase line))))
+  (cl-ppcre:split "\\W" (nstring-downcase line)))
 
-(defun remove-punctuation (string)
-  "Replace punctuation with spaces in string."
-  (substitute-if #\  #'punctuation-p string))
+;; (defun remove-punctuation (string)
+;;   "Replace punctuation with spaces in string."
+;;   (substitute-if #\  #'punctuation-p string))
 
 (defun punctuation-p (char)
   (if (or (char-equal #\. char) (char-equal #\, char) 
