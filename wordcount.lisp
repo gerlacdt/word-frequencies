@@ -63,9 +63,9 @@
   "for outputting the result into a file"
   (with-open-file (stream output-file :direction :output :if-exists :supersede)
     (mapcar #'(lambda (list-entry)
-                (format stream "~&~A -> ~A" 
-                        (word-count-pair-word list-entry) 
-                        (word-count-pair-count list-entry))) list)))
+                (format stream "~&~5d  ~A" 
+                        (word-count-pair-count list-entry)
+                        (word-count-pair-word list-entry) )) list)))
 
 (defun write-hashtable (hashtable output-file)
   "for debugging"
