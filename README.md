@@ -10,3 +10,11 @@ Load the asdf-system with:
 Start word counting with:
 
      > (wordcount:count-words "inputfile.txt" "output.txt")
+
+Or with quicklisp:
+
+Prerequsities see:
+
+http://xach.livejournal.com/278047.html?thread=674335              
+
+     > (quicklisp:quickload :wordcount)
